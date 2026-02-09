@@ -22,7 +22,7 @@ export default function CardsGrid() {
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             {data.map((item) => (
                 <div className="xl:w-1/4 md:w-1/2 p-4" key={item.id}>
-                    {console.log(item.image) }
+                    
                     <ItemCard image={item.image} title={item.title} price={item.price}/>
             </div>
             ))}
