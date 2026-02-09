@@ -23,7 +23,7 @@ export default function CardsGrid() {
             {data.map((item) => (
                 <div className="xl:w-1/4 md:w-1/2 p-4" key={item.id}>
                     
-                    <ItemCard image={item.image} title={item.title} price={item.price}/>
+                    <ItemCard id={item.id} image={item.image} title={item.title} price={item.price}/>
             </div>
             ))}
         </div>

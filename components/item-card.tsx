@@ -3,13 +3,24 @@ import { Button } from "@/components/ui/button"
 import {
   Card,
   CardAction,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { useCustomerStore } from "@/stores/userdata-store"
 
-export function ItemCard({ image, title, price }: { image: string, title: string, price: number }) {
+export function ItemCard({ id, image, title, price }: { id: number, image: string, title: string, price: number }) {
+  const addItems = useCustomerStore((state) => state.addItems)
+
+  const handleAddToCart = () => {
+    addItems({
+      id,
+      Image: image,
+      Title: title,
+      price,
+    })
+  }
+
   return (
     <Card className="relative mx-auto w-full max-w-sm pt-0">
       <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
@@ -20,12 +31,12 @@ export function ItemCard({ image, title, price }: { image: string, title: string
       />
       <CardHeader>
         <CardAction>
-          <Badge variant="secondary">{price}</Badge>
+          <Badge variant="secondary">${price}</Badge>
         </CardAction>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardFooter>
-        <Button className="w-full">add to card</Button>
+        <Button className="w-full" onClick={handleAddToCart}>Add to Cart</Button>
       </CardFooter>
     </Card>
   )
