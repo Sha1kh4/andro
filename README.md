@@ -1,6 +1,12 @@
 
 ## Setup guide.
-First, run the development server:
+First, Intsall required packages.
+
+```bash
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 pnpm dev
