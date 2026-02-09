@@ -1,33 +1,35 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function HeaderTabs() {
-  const [categories, setCategories] = useState<string[]>([]);
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
+    const [categories, setCategories] = useState<string[]>([]);
+    
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch("https://fakestoreapi.com/products/categories");
+                const data = await response.json();
+                setCategories(data);
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+            }
+        };
+        fetchCategories();
+    }, []);
 
-        const cats: string[] = [
-          ...new Set(data.map((item: { category: string }) => item.category)),
-        ];
-        setCategories(cats);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
-    fetchCategories();
-  }, []);
   return (
-    <>
-      <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+    <section className="container mx-auto px-5 py-6">
+      <h2 className="mb-6 text-2xl font-bold tracking-tight">Shop by Category</h2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
         {categories.map((category) => (
-          <div className="mr-5 hover:text-gray-900" key={category}>
-            <a href="#">{category}</a>
-          </div>
+            <Card key={category} className="hover:bg-accent cursor-pointer transition-colors hover:shadow-md">
+                <CardHeader className="text-center py-6">
+                    <CardTitle className="capitalize">{category}</CardTitle>
+                </CardHeader>
+            </Card>
         ))}
-      </nav>
-    </>
+      </div>
+    </section>
   );
 }
