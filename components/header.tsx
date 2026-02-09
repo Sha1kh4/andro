@@ -1,10 +1,8 @@
 "use client";
 import CartIcon from "./cart-icon";
 import { Input } from "./ui/input";
-import { useCustomerStore } from "@/stores/userdata-store";
 
 export default function Header() {
-  const { data } = useCustomerStore();
   return (
     <>
       <div className="flex items-center justify-between p-4">

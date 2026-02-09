@@ -1,21 +1,4 @@
 "use client";
-
-import {
-  Menubar,
-  MenubarCheckboxItem,
-  MenubarContent,
-  MenubarGroup,
-  MenubarItem,
-  MenubarMenu,
-  MenubarRadioGroup,
-  MenubarRadioItem,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarSub,
-  MenubarSubContent,
-  MenubarSubTrigger,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
 import { useEffect, useState } from "react";
 
 export function HeaderTabs() {
@@ -36,20 +19,15 @@ export function HeaderTabs() {
     };
     fetchCategories();
   }, []);
-  return (<>
-       <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-  
-        {
-            categories.map((category) => (
-                <div className="mr-5 hover:text-gray-900" key={category}>
-                    <h2>{category}</h2>
-                </div>
-            ))
-        }
-    
-      
-    </nav>
-    
+  return (
+    <>
+      <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+        {categories.map((category) => (
+          <div className="mr-5 hover:text-gray-900" key={category}>
+            <a href="#">{category}</a>
+          </div>
+        ))}
+      </nav>
     </>
   );
 }
